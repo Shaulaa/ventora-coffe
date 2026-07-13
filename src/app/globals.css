@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-espresso: #2B2118;
+  --color-espresso-light: #3D2E20;
+  --color-paper: #FFF8EC;
+  --color-paper-dim: #FBEFDA;
+  --color-sage: #6B7A54;
+  --color-amber: #F2B138;
+  --color-rust: #B23A2E;
+
+  --background: var(--color-paper);
+  --foreground: var(--color-espresso);
+  --surface: #ffffff;
+  --border-soft: #EBDCC2;
+}
+
+.dark {
+  --background: var(--color-espresso);
+  --foreground: var(--color-paper);
+  --surface: var(--color-espresso-light);
+  --border-soft: #4A3826;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border-soft: var(--border-soft);
+  --color-espresso: var(--color-espresso);
+  --color-espresso-light: var(--color-espresso-light);
+  --color-paper: var(--color-paper);
+  --color-paper-dim: var(--color-paper-dim);
+  --color-sage: var(--color-sage);
+  --color-amber: var(--color-amber);
+  --color-rust: var(--color-rust);
+  --font-display: "Baloo 2", "Fraunces", Georgia, serif;
+  --font-serif: "Fraunces", "Baloo 2", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-data: "JetBrains Mono", ui-monospace, monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: var(--color-amber);
+  color: var(--color-paper);
+}
+
+/* Premium primitives, dipakai lintas section homepage */
+.eyebrow {
+  font-family: var(--font-data), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-sage);
+}
+
+/* Uap kopi halus di hero, fallback diam saat reduced motion */
+@keyframes steam-rise {
+  0% { opacity: 0; transform: translateY(4px) scaleX(1); }
+  40% { opacity: 0.55; }
+  100% { opacity: 0; transform: translateY(-14px) scaleX(1.4); }
+}
+
+.steam {
+  animation: steam-rise 3.4s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .steam {
+    animation: none;
+    opacity: 0.32;
+  }
+}
