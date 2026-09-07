@@ -37,12 +37,21 @@ orders/{orderId}
 ```
 reservations/{reservationId}
   userId: string
+  name: string          // nama pemesan
+  phone: string         // nomor WhatsApp buat konfirmasi
   date: string          // format YYYY-MM-DD
   time: string          // format HH:mm
   guestCount: number
-  status: "menunggu" | "dikonfirmasi" | "ditolak" | "selesai"
+  note: string          // opsional, catatan tambahan
+  status: "menunggu" | "dikonfirmasi" | "ditolak" | "selesai" | "dibatalkan"
   createdAt: timestamp
+  updatedAt: timestamp
 ```
+
+Alur status: user bikin reservasi -> `menunggu`. Admin bisa `dikonfirmasi`
+atau `ditolak`. Setelah dikonfirmasi, admin bisa tandai `selesai`. User bisa
+membatalkan reservasi miliknya sendiri (`dibatalkan`) selama masih `menunggu`
+atau `dikonfirmasi`.
 
 ## `reviews`
 

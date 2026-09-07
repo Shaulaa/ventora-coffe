@@ -9,23 +9,27 @@ const stats = [
 
 export default function TrustStrip() {
   return (
-    <section className="border-b border-border-soft">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px overflow-hidden px-6 md:grid-cols-4">
-        {stats.map(({ icon: Icon, value, label }) => (
-          <div
-            key={label}
-            className="flex flex-col items-center gap-1 px-4 py-8 text-center md:items-start md:text-left"
-          >
-            <Icon className="h-5 w-5 text-sage" aria-hidden="true" />
-            <p className="mt-1 font-serif text-3xl font-semibold tracking-tight">
-              {value}
-            </p>
-            <p className="font-data text-[11px] uppercase tracking-[0.18em] text-foreground/55">
-              {label}
-            </p>
-          </div>
-        ))}
+    <div className="bg-surface py-8">
+      <div className="mx-auto max-w-screen-xl">
+        <div className="flex flex-col md:flex-row">
+          {stats.map(({ icon: Icon, value, label }, index) => (
+            <div
+              key={label}
+              className={`flex flex-1 flex-col px-6 py-4 text-left md:px-8 md:py-6 ${
+                index < stats.length - 1 ? "border-b border-border-soft md:border-b-0 md:border-r border-border-soft" : ""
+              }`}
+            >
+              <Icon className="h-5 w-5 text-rust" aria-hidden="true" strokeWidth={1.5} />
+              <p className="mt-2 font-serif text-3xl font-semibold tracking-tight text-espresso dark:text-paper md:text-4xl">
+                {value}
+              </p>
+              <p className="mt-1 font-data text-[11px] uppercase tracking-[0.15em] text-foreground/50 dark:text-paper/50">
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

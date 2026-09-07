@@ -8,7 +8,7 @@ const stories = [
 export default function CommunityCarousel() {
   return (
     <section className="border-y border-border-soft bg-paper-dim py-16 dark:bg-espresso-light">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-screen-xl px-6">
         <p className="text-center eyebrow">Kata mereka</p>
         <h3 className="mt-2 text-center font-serif text-2xl font-semibold tracking-tight md:text-3xl">
           Cerita dari pelanggan Ventora

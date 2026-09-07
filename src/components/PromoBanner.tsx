@@ -1,19 +1,29 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { getActivePromos } from "@/lib/firestore-promos";
 
 type Promo = {
+  id: string;
   title: string;
   description: string;
+  imageUrl?: string;
 };
 
-const activePromo: Promo = {
-  title: "Beli 2 gratis 1 untuk menu Signature",
-  description: "Berlaku Senin–Rabu, pukul 08.00–11.00. Tunjukkan halaman ini di kasir.",
-};
+async function PromoBanner() {
+  const promos = await getActivePromos();
+  const activePromo = promos[0];
 
-export default function PromoBanner() {
+  // Fallback ke promo dummy jika belum ada di Firestore
+  const fallbackPromo: Promo = {
+    id: "promo-1",
+    title: "Beli 2 gratis 1 untuk menu Signature",
+    description: "Berlaku Senin–Rabu, pukul 08.00–11.00. Tunjukkan halaman ini di kasir.",
+  };
+
+  const promo = activePromo || fallbackPromo;
+
   return (
-    <section className="mx-auto max-w-6xl px-6">
+    <section className="mx-auto max-w-screen-xl px-6">
       <div className="relative overflow-hidden rounded-3xl border border-espresso/10 bg-espresso px-8 py-10 text-paper dark:border-paper/10 dark:bg-espresso-light md:px-12 md:py-12">
         {/* aksen garis halus */}
         <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full border border-amber/20" />
@@ -25,10 +35,10 @@ export default function PromoBanner() {
               Promo minggu ini
             </p>
             <h3 className="mt-3 font-serif text-2xl font-semibold leading-snug tracking-tight md:text-3xl">
-              {activePromo.title}
+              {promo.title}
             </h3>
             <p className="mt-2 text-sm leading-6 text-paper/70">
-              {activePromo.description}
+              {promo.description}
             </p>
           </div>
           <Link
@@ -43,3 +53,5 @@ export default function PromoBanner() {
     </section>
   );
 }
+
+export default PromoBanner;

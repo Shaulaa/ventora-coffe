@@ -20,7 +20,7 @@ const crafts = [
 
 export default function CraftSection() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20">
+    <section className="mx-auto max-w-screen-xl px-6 py-20">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="lg:sticky lg:top-24 lg:self-start">
           <p className="eyebrow">Tentang Ventora</p>

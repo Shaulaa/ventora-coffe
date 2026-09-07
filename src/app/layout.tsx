@@ -7,6 +7,9 @@ import { CartProvider } from "@/context/CartContext";
 export const metadata: Metadata = {
   title: "Ventora Coffee",
   description: "Web coffeeshop, pesan online, reservasi meja, dan menu digital.",
+  icons: {
+    icon: { url: "/img/favicon_512x512.png", type: "image/png" },
+  },
 };
 
 export default function RootLayout({

@@ -1,6 +1,11 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, connectFirestoreEmulator, setLogLevel } from "firebase/firestore";
+
+// Disable Firestore logging di development untuk avoid warning noise
+if (process.env.NODE_ENV === "development") {
+  setLogLevel("error"); // Only show errors, not warnings
+}
 
 // Semua key diambil dari environment variable, jangan pernah hardcode
 // key asli langsung di file ini. Isi nilainya di .env.local (lihat .env.local.example).
@@ -21,15 +26,8 @@ if (!isConfigured && typeof window !== "undefined") {
   );
 }
 
-// Pakai config dummy pas Firebase belum diisi, biar build/prerender gak crash.
-// Fitur auth & firestore tetap gak akan berfungsi sampai .env.local beneran diisi.
-const app = getApps().length
-  ? getApp()
-  : initializeApp(
-      isConfigured
-        ? firebaseConfig
-        : { apiKey: "demo-key", authDomain: "demo.firebaseapp.com", projectId: "demo-project" }
-    );
+// Initialize Firebase
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);

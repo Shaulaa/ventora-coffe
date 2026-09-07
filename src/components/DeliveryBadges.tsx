@@ -6,7 +6,7 @@ const platforms = [
 
 export default function DeliveryBadges() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-16 text-center">
+    <section className="mx-auto max-w-screen-xl px-6 py-16 text-center">
       <p className="eyebrow">Gak sempat mampir?</p>
       <h3 className="mt-2 font-serif text-2xl font-semibold tracking-tight md:text-3xl">
         Pesan online lewat
