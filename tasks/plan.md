@@ -1,6 +1,6 @@
 # Plan: Homepage Modern (Premium Urban Cafe), Ventora Coffee
 
-Spec source: `SPEC.md`
+Spec source: `docs/development/SPEC.md`
 
 ## Strategy
 

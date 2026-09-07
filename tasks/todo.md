@@ -1,6 +1,6 @@
 # Todo: Homepage Modern (Premium Urban Cafe)
 
-Spec: `SPEC.md` · Plan: `tasks/plan.md`
+Spec: `docs/development/SPEC.md` · Plan: `tasks/plan.md`
 
 - [x] 1. Foundation: token `--font-serif` + util premium di `globals.css`
 - [x] 2. Hero premium (`Hero.tsx`) — headline serif, indikator buka pill, cangkir line-art + uap
@@ -30,4 +30,4 @@ Spec: `SPEC.md` · Plan: `tasks/plan.md`
 ## Catatan untuk sesi berikutnya
 
 - Belum di-commit (repo `.git` project saat ini kosong / belum ter-init).
-- Testing framework belum ada; nambah butuh approval (boundary di SPEC.md).
+- Testing framework belum ada; nambah butuh approval (boundary di `docs/development/SPEC.md`).

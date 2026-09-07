@@ -27,7 +27,7 @@ Aplikasi web coffee shop modern untuk katalog menu, pemesanan, pembayaran, reser
    npm install
    ```
 
-2. Buat `.env.local` dan isi konfigurasi Firebase serta kredensial Midtrans. Lihat `.env.local.example` dan panduan di `FIREBASE_SETUP.md` serta `PAYMENT_SETUP.md`.
+2. Buat `.env.local` dan isi konfigurasi Firebase serta kredensial Midtrans. Lihat `.env.local.example` dan panduan di [`docs/setup/FIREBASE_SETUP.md`](docs/setup/FIREBASE_SETUP.md) serta [`docs/payment/PAYMENT_SETUP.md`](docs/payment/PAYMENT_SETUP.md).
 
 3. Aktifkan metode login Email/Password dan Google di Firebase Authentication, lalu buat database Firestore.
 
@@ -56,10 +56,11 @@ src/
 
 ## Dokumentasi
 
-- `FIREBASE_SETUP.md` — setup Firebase dan Firestore
-- `PAYMENT_SETUP.md` — setup pembayaran Midtrans
-- `docs/DATA_MODEL.md` — skema data Firestore
-- `docs/DESIGN_SYSTEM.md` — panduan visual
+- [Indeks dokumentasi](docs/README.md)
+- [Setup Firebase](docs/setup/FIREBASE_SETUP.md)
+- [Setup pembayaran Midtrans](docs/payment/PAYMENT_SETUP.md)
+- [Skema data Firestore](docs/DATA_MODEL.md)
+- [Panduan visual](docs/DESIGN_SYSTEM.md)
 
 ## Keamanan
 

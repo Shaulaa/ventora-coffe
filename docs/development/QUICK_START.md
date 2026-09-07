@@ -137,16 +137,16 @@ curl https://your-ngrok-url.ngrok.io/api/midtrans/notification
 ## 📚 Documentation Links
 
 **For Setup:**  
-→ [PAYMENT_SETUP.md](./PAYMENT_SETUP.md) - Full architecture & setup
+→ [PAYMENT_SETUP.md](../payment/PAYMENT_SETUP.md) - Full architecture & setup
 
 **For Deployment:**  
-→ [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md) - Step-by-step deployment
+→ [MIGRATION_GUIDE.md](../payment/MIGRATION_GUIDE.md) - Step-by-step deployment
 
 **For Debugging:**  
-→ [PAYMENT_DEBUG.md](./PAYMENT_DEBUG.md) - Troubleshooting guide
+→ [PAYMENT_DEBUG.md](../payment/PAYMENT_DEBUG.md) - Troubleshooting guide
 
 **For Overview:**  
-→ [README_PAYMENT.md](./README_PAYMENT.md) - Navigation hub
+→ [README_PAYMENT.md](../payment/README_PAYMENT.md) - Navigation hub
 
 ---
 
@@ -158,7 +158,7 @@ After completing setup above, you should have:
 - ✅ Resume payment feature working
 - ✅ Understanding of the flow
 
-**Next:** Read [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md) for production deployment!
+**Next:** Read [MIGRATION_GUIDE.md](../payment/MIGRATION_GUIDE.md) for production deployment!
 
 ---
 

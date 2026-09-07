@@ -414,16 +414,16 @@ Before marking this task as COMPLETE:
 ## 📞 Support
 
 **Questions about implementation?**  
-→ Check [PAYMENT_DEBUG.md](./PAYMENT_DEBUG.md)
+→ Check [PAYMENT_DEBUG.md](../payment/PAYMENT_DEBUG.md)
 
 **Need to deploy?**  
-→ Follow [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md)
+→ Follow [MIGRATION_GUIDE.md](../payment/MIGRATION_GUIDE.md)
 
 **Want to understand architecture?**  
-→ Read [PAYMENT_SETUP.md](./PAYMENT_SETUP.md)
+→ Read [PAYMENT_SETUP.md](../payment/PAYMENT_SETUP.md)
 
 **Something not working?**  
-→ Debug with [PAYMENT_DEBUG.md](./PAYMENT_DEBUG.md)
+→ Debug with [PAYMENT_DEBUG.md](../payment/PAYMENT_DEBUG.md)
 
 ---
 
