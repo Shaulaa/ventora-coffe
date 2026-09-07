@@ -1,73 +1,67 @@
-# Ventora Coffee, Web Coffeeshop
+# Ventora Coffee
 
-Project belajar vibe coding, dibangun bertahap dari Fase 1 (fondasi).
+Aplikasi web coffee shop modern untuk katalog menu, pemesanan, pembayaran, reservasi, dan pengelolaan operasional.
 
-## Stack
+## Fitur
 
-- Next.js 16 (App Router) + TypeScript
-- Tailwind CSS v4
-- Firebase (Auth + Firestore)
-- next-themes buat dark mode
+- Katalog menu dan detail produk berbasis Firestore
+- Autentikasi Firebase: email/password dan Google Sign-In
+- Keranjang, checkout, riwayat pesanan, serta pelacakan status pembayaran
+- Pembayaran Midtrans Snap
+- Reservasi meja dan pembatalan reservasi oleh pelanggan
+- Dark mode dan antarmuka responsif
+- Dashboard admin untuk pesanan, reservasi, produk, promo, ulasan, dan pengguna
 
-## Cara jalanin di lokal
+## Teknologi
 
-1. Install dependency
+- Next.js 16 (App Router), React 19, dan TypeScript
+- Tailwind CSS 4
+- Firebase Authentication dan Cloud Firestore
+- Midtrans Snap
+
+## Menjalankan secara lokal
+
+1. Instal dependensi:
 
    ```bash
    npm install
    ```
 
-2. Setup Firebase
-   - Buka [Firebase Console](https://console.firebase.google.com), buat project baru
-   - Aktifkan **Authentication > Sign-in method > Email/Password** dan **Google**
-   - Aktifkan **Firestore Database**
-   - Buka Project Settings > General > Your apps, tambah Web App, copy config-nya
-   - Salin `.env.local.example` jadi `.env.local`, isi semua value dari config tadi
+2. Buat `.env.local` dan isi konfigurasi Firebase serta kredensial Midtrans. Lihat `.env.local.example` dan panduan di `FIREBASE_SETUP.md` serta `PAYMENT_SETUP.md`.
 
-3. Jalanin dev server
+3. Aktifkan metode login Email/Password dan Google di Firebase Authentication, lalu buat database Firestore.
+
+4. Jalankan aplikasi:
 
    ```bash
    npm run dev
    ```
 
-   Buka [http://localhost:3000](http://localhost:3000)
+   Buka [http://localhost:3000](http://localhost:3000).
 
-## Dokumentasi lengkap
+## Konfigurasi Firebase
 
-- `CLAUDE.md`, konteks utama project, aturan baku, dan checklist nambah fitur
-- `docs/DESIGN_SYSTEM.md`, token warna, tipografi, dan prinsip visual
-- `docs/DATA_MODEL.md`, skema Firestore dan Security Rules yang wajib dipasang
-- `docs/ROADMAP.md`, status tiap fase dan checklist fitur yang belum jalan
+Konfigurasi deployment Firebase tersedia di `firebase.json`, dengan Security Rules pada `firestore.rules` dan indeks pada `firestore.indexes.json`. Deploy aturan dan indeks sebelum membuka aplikasi ke publik.
 
-Kalau lanjut ngoding pake AI assistant (Claude Code, Cursor, dll), pastiin
-baca `CLAUDE.md` dulu, biar gak nanya ulang hal yang udah difinalin.
-
-## Fitur yang udah jadi (Fase 1)
-
-- Landing page (hero, promo banner, rekomendasi menu)
-- Dark mode toggle
-- Login & register pakai Firebase Auth (email/password + Google Sign-In)
-- Halaman menu (masih data dummy, belum konek Firestore)
-
-## Fitur yang nyusul
-
-- Fase 2, menu & katalog konek ke Firestore beneran, sistem rating
-- Fase 3, keranjang belanja, checkout, history & status order
-- Fase 4, reservasi meja, promo dari database, rekomendasi berbasis data asli
-- Fase 5, dashboard admin
-
-## Struktur folder penting
+## Struktur proyek
 
 ```
 src/
-  app/            halaman (landing, login, register, menu)
-  components/     komponen UI (Navbar, Hero, ProductCard, dll)
-  context/        AuthContext buat status login global
-  lib/            firebase.ts (init) dan dummy-products.ts (data sementara)
+  app/          halaman, API routes, dan dashboard admin
+  components/   komponen UI
+  context/      state autentikasi dan keranjang
+  lib/          Firebase, Firestore, dan integrasi pembayaran
+  scripts/      utilitas migrasi data dan pembuatan admin
 ```
 
-## Catatan security
+## Dokumentasi
 
-- Jangan commit file `.env.local`, udah otomatis masuk `.gitignore`
-- Setelah bikin Firestore, wajib pasang Security Rules sebelum deploy publik
-  (baru default "test mode" yang kebuka buat siapa aja)
+- `FIREBASE_SETUP.md` — setup Firebase dan Firestore
+- `PAYMENT_SETUP.md` — setup pembayaran Midtrans
+- `docs/DATA_MODEL.md` — skema data Firestore
+- `docs/DESIGN_SYSTEM.md` — panduan visual
+
+## Keamanan
+
+- Jangan commit `.env.local` atau kredensial lain.
+- Terapkan `firestore.rules` sebelum deployment produksi.

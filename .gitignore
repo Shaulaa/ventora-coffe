@@ -39,6 +39,10 @@ yarn-error.log*
 # external tooling (Addy Osmani agent-skills plugin, di-clone lokal, bukan source Ventora)
 /agent-skills
 
+# local AI-assistant configuration and duplicate working assets
+/.claude
+/img
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

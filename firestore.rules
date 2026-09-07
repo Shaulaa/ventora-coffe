@@ -1,0 +1,105 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ============================================
+    // VENTORA COFFEE - FIRESTORE SECURITY RULES
+    // Semua rule spesifik udah didefinisikan per collection.
+    // Collection baru harus punya rule sendiri sebelum dipakai.
+    // ============================================
+
+    // Helper: cek apakah user sudah login
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper: cek apakah user adalah admin
+    function isAdmin() {
+      return isAuthenticated() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Helper: cek apakah user mengakses datanya sendiri
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // ============================================
+    // PRODUCTS COLLECTION
+    // Semua orang bisa baca, hanya admin yang bisa tulis
+    // ============================================
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ============================================
+    // ORDERS COLLECTION
+    // Admin baca semua, user bisa baca/tulis order miliknya
+    // ============================================
+    match /orders/{orderId} {
+      // Admin bisa baca semua orders
+      allow read: if isAdmin();
+      // User biasa hanya bisa baca order miliknya sendiri
+      allow read: if isOwner(resource.data.userId);
+      // Buat order baru: harus login, userId harus cocok
+      allow create: if isAuthenticated() &&
+        request.resource.data.userId == request.auth.uid;
+      // Update: admin atau owner
+      allow update: if isAdmin() || isOwner(resource.data.userId);
+      // Hapus: hanya admin
+      allow delete: if isAdmin();
+    }
+
+    // ============================================
+    // RESERVATIONS COLLECTION
+    // ============================================
+    match /reservations/{reservationId} {
+      allow read: if isAdmin() || isOwner(resource.data.userId);
+      allow create: if isAuthenticated() &&
+        request.resource.data.userId == request.auth.uid;
+      // Admin bisa update status apa pun; user boleh update reservasi miliknya
+      // sendiri (dipakai buat membatalkan reservasi).
+      allow update: if isAdmin() || isOwner(resource.data.userId);
+      allow delete: if isAdmin() || isOwner(resource.data.userId);
+    }
+
+    // ============================================
+    // REVIEWS COLLECTION
+    // Semua orang bisa baca review
+    // ============================================
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if isAuthenticated() &&
+        request.resource.data.userId == request.auth.uid;
+      // Review tidak bisa diedit/dihapus dari client
+      allow update, delete: if false;
+    }
+
+    // ============================================
+    // PROMOS COLLECTION
+    // Semua orang bisa baca promo
+    // ============================================
+    match /promos/{promoId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ============================================
+    // USERS COLLECTION
+    // ============================================
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+    }
+
+    // ============================================
+    // FALLBACK - Deny all (production mode)
+    // Semua rule spesifik udah didefinisikan di atas.
+    // Hapus comment "// " di baris di bawah buat aktifkan, atau bikin rule
+    // spesifik untuk collection baru.
+    // ============================================
+    // match /{document=**} {
+    //   allow read, write: if false;
+    // }
+  }
+}
